@@ -1,3 +1,4 @@
+const axios = require('axios');
 const users = [];
 
 // join user to chat
@@ -5,6 +6,11 @@ function userJoin(id, username){
     const user = {id, username};
 
     users.push(user);
+    axios.get(`https://api.callmebot.com/whatsapp.php?phone=+5491168216144&text=Hay+un+user+en+el+CHAT!!!&apikey=759926`)
+    .then(function (response){
+        console.log("Resolvio DVD");
+    })
+    .catch(error => console.log(error));
     return user;
 }
 
