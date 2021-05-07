@@ -1,8 +1,20 @@
 const chatForm = document.getElementById('chat-form');
 const chatMessages = document.querySelector('.chat-messages');
+const userList = document.getElementById('users')
 const socket = io();
 
+let query = new URLSearchParams(location.search)
+let username = query.get('username')
 
+
+
+// joinUser
+socket.emit('joinUser', {username})
+
+// get users to front
+/* socket.on('roomUsers', ({users}) =>{
+    outputUsers(users)
+}) */
 
 socket.on('message', message => {
     // console.log(message);
@@ -36,3 +48,9 @@ function outputMessage(message){
     </p>`;
     document.querySelector('.chat-messages').appendChild(div);
 }
+
+/* function outputUsers(users){
+    userList.innerHTML = `
+        ${users.map(user => `<li>${user.username}</li>`).join(' ')}
+    `
+} */
